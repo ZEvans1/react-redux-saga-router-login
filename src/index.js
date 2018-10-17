@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import reducer from './reducers';
 import Saga from './sagas';
@@ -18,8 +19,9 @@ const store = createStore(
 sagaMiddleware.run(Saga);
 
 render(
-    <Provider store={store}>
-        <App/>
-    </Provider>,
-    document.getElementById('root')
+    <Router>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </Router>, document.getElementById('root')
 )
