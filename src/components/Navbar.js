@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import './NavBar.css';
 
 class NavBar extends Component {
   render(){
     return(
       <div className="nav-container">
-        <a href="/">Link 1</a>
-        <a href="/">Link 2</a>
+        <Link to='/'>Home</Link>
+        <Link to='/pageone'>Page One</Link>
+        <Link to='/pagetwo'>Page Two</Link>
       </div>
     )
   }

@@ -32,11 +32,14 @@ class LoginForm extends Component {
     render() {
         const formStyle = this.props.login.isLoggedIn ? {display: 'none'} : {};
         const welcomeStyle = this.props.login.isLoggedIn ? {} : {display: 'none'};
+        const navStyle = this.props.login.isLoggedIn ? {width: '100%'} : {display: 'none'};
         const loadingStyle = this.props.login.isProcessing ? {} : {display: 'none'};
 
         return(
             <div className="page-container">
-                <NavBar style={welcomeStyle}/>
+                <div style={navStyle}>
+                    <NavBar/>
+                </div>
                 <div className="form-container" style={formStyle}>
                     <label>Email</label>
                     <input
