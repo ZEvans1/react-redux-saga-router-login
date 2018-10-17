@@ -1,0 +1,74 @@
+LoginForm.js
+-------
+button click -> handleSubmit() -> dispatch(login(email, password))
+-------
+
+actions.js
+-------
+export const login = (email, password) => ({
+    type: LOGIN_REQUEST,
+    payload: { email, password }
+});
+-------
+
+sagas.js
+-------
+function* Saga() {
+    yield takeLatest(LOGIN_REQUEST, authorize);
+}
+
+function* authorize(action) {
+    let loginResponse
+    try {
+        loginResponse = yield call(loginApi, action.payload.email, action.payload.password)
+        yield put(loginSuccess(loginResponse.user))
+        localStorage.setItem('token', JSON.stringify(loginResponse.token))
+    } catch (error) {
+        yield put(loginFailure(error))
+    }
+    return loginResponse
+}
+
+function loginApi (email, password) {
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+    })
+        .then(response => response.json())
+        .then(json => json)
+        .catch((error) => { throw error })
+}
+-------
+
+actions.js
+-------
+export const loginSuccess = (user) => ({
+    type: LOGIN_SUCCESS,
+    payload: {...user}
+})
+
+export const loginFailure = (err) => ({
+    type: LOGIN_FAILURE,
+    payload: {...err},
+})
+-------
+
+reducers.js
+-------
+function loginReducer(state = initialState, action) {
+    switch (action.type) {
+        case LOGIN_SUCCESS: {
+            return { ...state, isLoggedIn: true, isProcessing: false}
+        }
+        case LOGIN_FAILURE: {
+            return { ...state, error: action.payload}
+        }
+        default:
+            return state;
+    }
+}
+-------
+

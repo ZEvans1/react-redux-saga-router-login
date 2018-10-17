@@ -1,0 +1,37 @@
+$display-mode: flex;
+$form-border: solid black;
+$form-width: 300px;
+
+.form-container{
+  display: $display-mode;
+  flex-direction: column;
+  align-items: center;
+  border: $form-border;
+  width: $form-width;
+
+    input {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+
+    button {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+
+    p {
+      color: red;
+    }
+}
+
+.page-container{
+  display: $display-mode;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-container{
+  display: $display-mode;
+  flex-direction: row;
+  justify-content: center;
+}

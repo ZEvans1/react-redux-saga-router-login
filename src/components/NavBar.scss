@@ -1,0 +1,19 @@
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.3em;
+  background-color: rgba($color: #6dc3dd, $alpha: 0.7);
+    a {
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+      text-decoration: none;
+      color: black;
+    }
+
+    a:hover {
+      background: white;
+    }
+}
